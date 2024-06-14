@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033d22296e45ae042847e94e7723c6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alarmTrigger: {fileID: 79294325}
   _audioSource: {fileID: 79294323}
-  _minVolume: 0
-  _maxVolume: 1
   _volumeChangeSpeed: 0.1
+  _volumeChangeDelay: 1
 --- !u!65 &79294322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ba0aa607de997c44b8d403223b9ba61, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
   Loop: 1
@@ -315,6 +315,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &79294325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79294319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de282eb555c9d1e43a793177c0ad0625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minVolume: 0
+  _maxVolume: 1
 --- !u!1 &213017163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8760462573469933808, guid: d78188a04ae94fb418ca4acc157a8c3a, type: 3}
@@ -1012,6 +1026,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2270074732910834934, guid: d78188a04ae94fb418ca4acc157a8c3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 79294321}
+    - targetCorrespondingSourceObject: {fileID: 2270074732910834934, guid: d78188a04ae94fb418ca4acc157a8c3a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 79294325}
     - targetCorrespondingSourceObject: {fileID: 2270074732910834934, guid: d78188a04ae94fb418ca4acc157a8c3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 79294323}
