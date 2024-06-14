@@ -194,10 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033d22296e45ae042847e94e7723c6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alarmTrigger: {fileID: 79294325}
   _audioSource: {fileID: 79294323}
   _volumeChangeSpeed: 0.1
   _volumeChangeDelay: 1
+  _minVolume: 0
+  _maxVolume: 1
 --- !u!65 &79294322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -327,8 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de282eb555c9d1e43a793177c0ad0625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minVolume: 0
-  _maxVolume: 1
+  _alarmEnabler: {fileID: 79294321}
 --- !u!1 &213017163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8760462573469933808, guid: d78188a04ae94fb418ca4acc157a8c3a, type: 3}

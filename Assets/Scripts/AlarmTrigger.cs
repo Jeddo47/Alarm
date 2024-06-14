@@ -1,21 +1,14 @@
-using System;
 using UnityEngine;
 
 public class AlarmTrigger : MonoBehaviour
 {
-    [SerializeField] private float _minVolume;
-    [SerializeField] private float _maxVolume;
-
-    public event Action<float> ThiefEntered;
-    public event Action<float> ThiefLeft;
-
-    public float MinVolume { get { return _minVolume; } }
+    [SerializeField] AlarmEnabler _alarmEnabler;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlayerController>(out _))
         {
-            ThiefEntered?.Invoke(_maxVolume);
+            _alarmEnabler.TurnAlarmOn(); 
         }
     }
 
@@ -23,7 +16,7 @@ public class AlarmTrigger : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerController>(out _))
         {
-            ThiefLeft?.Invoke(_minVolume);
+            _alarmEnabler.TurnAlarmOff();
         }
     }
 }

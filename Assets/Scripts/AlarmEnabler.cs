@@ -3,59 +3,53 @@ using UnityEngine;
 
 public class AlarmEnabler : MonoBehaviour
 {
-    [SerializeField] private AlarmTrigger _alarmTrigger;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _volumeChangeSpeed;
     [SerializeField] private float _volumeChangeDelay;
+    [SerializeField] private float _minVolume;
+    [SerializeField] private float _maxVolume;
 
     private Coroutine _volumeChangeCoroutine;
-    private bool _isAlarmEnabled = false;
 
-    private void OnEnable()
+    public void TurnAlarmOn()
     {
-        _alarmTrigger.ThiefEntered += ChangeAlarmStatus;
-        _alarmTrigger.ThiefLeft += ChangeAlarmStatus;
-    }
-
-    private void OnDisable()
-    {
-        _alarmTrigger.ThiefEntered -= ChangeAlarmStatus;
-        _alarmTrigger.ThiefLeft -= ChangeAlarmStatus;
-    }
-
-    private void ChangeAlarmStatus(float targetVolume) 
-    {
-        if (_volumeChangeCoroutine != null) 
+        if (_volumeChangeCoroutine != null)
         {
-            StopCoroutine(_volumeChangeCoroutine);        
+            StopCoroutine(_volumeChangeCoroutine);
         }
-        
-        _volumeChangeCoroutine = StartCoroutine(StartChangingVolume(targetVolume));
+
+        _volumeChangeCoroutine = StartCoroutine(StartChangingVolume(_maxVolume));
     }
 
-    private IEnumerator StartChangingVolume(float targetVolume) 
+    public void TurnAlarmOff()
+    {
+        if (_volumeChangeCoroutine != null)
+        {
+            StopCoroutine(_volumeChangeCoroutine);
+        }
+
+        _volumeChangeCoroutine = StartCoroutine(StartChangingVolume(_minVolume));
+    }
+
+    private IEnumerator StartChangingVolume(float targetVolume)
     {
         WaitForSeconds wait = new WaitForSeconds(_volumeChangeDelay);
 
-        if (_isAlarmEnabled == false)
+        if (_audioSource.isPlaying == false)
         {
-            _isAlarmEnabled = true;
-
             _audioSource.Play();
         }
 
-        while (_audioSource.volume != targetVolume) 
+        while (_audioSource.volume != targetVolume)
         {
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, targetVolume, _volumeChangeSpeed);
 
             yield return wait;
         }
 
-        if (_audioSource.volume == _alarmTrigger.MinVolume) 
-        {
-            _isAlarmEnabled = false;
-            
-            _audioSource.Stop();        
+        if (_audioSource.volume == _minVolume)
+        {            
+            _audioSource.Stop();
         }
     }
 }
