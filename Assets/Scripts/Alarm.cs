@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class AlarmEnabler : MonoBehaviour
+public class Alarm : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _volumeChangeSpeed;

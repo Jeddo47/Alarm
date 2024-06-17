@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class AlarmTrigger : MonoBehaviour
 {
-    [SerializeField] AlarmEnabler _alarmEnabler;
+    [SerializeField] private Alarm _alarmEnabler;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerController>(out _))
+        if (other.TryGetComponent<PlayerMover>(out _))
         {
             _alarmEnabler.TurnAlarmOn(); 
         }
@@ -14,7 +14,7 @@ public class AlarmTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<PlayerController>(out _))
+        if (other.TryGetComponent<PlayerMover>(out _))
         {
             _alarmEnabler.TurnAlarmOff();
         }
